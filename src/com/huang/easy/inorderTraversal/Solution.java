@@ -2,6 +2,7 @@ package com.huang.easy.inorderTraversal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class TreeNode {
     int val;
@@ -17,54 +18,34 @@ class TreeNode {
 }
 public class Solution {
 
-    static List<Integer> list = new ArrayList<>();
+//    static List<Integer> list = new ArrayList<>();
 
     public List<Integer> inorderTraversal(TreeNode root) {
-
-//        if(root.right == null){
-//            return list;
-//        }
-        if(root == null){
+        List<Integer> list = new ArrayList<>();
+        if (root == null){
             return list;
         }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()){
+            if(cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }else {
+                //流程是将，看代码时候再想想，第一次是想明白了的
+                cur = stack.pop();
+                list.add(cur.val);
+                cur = cur.right;
+            }
 
-        rightlistAll(root.left);
-        list.add(root.val);
-        rightlistAll(root.right);
+        }
 
-//        if(root != null){
-//            rightlistAll(root);
-//
-//
-//        }
-//        if(root.left != null) {
-//            inorderTraversal(root.left);
-//            list.add(root.val);
-//            if(root.left != null){
-//                list.add(root.left.val);
-//            }
-//            if(root.right != null){
-//                list.add(root.right.val);
-//            }
-//        }
-//        list.add(root.val);
-//        if (root.right != null){
-//            inorderTraversal(root.right);
-//        }
+
+
         return list;
     }
 
-    public void rightlistAll(TreeNode root) {
-        if (root.left != null) {
-            rightlistAll(root.left);
-            list.add(root.left.val);
-        }
-        list.add(root.val);
-            if (root.right != null) {
-                rightlistAll(root.right);
-                list.add(root.right.val);
-            }
-        }
+
 }
 
 

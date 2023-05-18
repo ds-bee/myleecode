@@ -3,6 +3,11 @@ package com.huang.easy.util;
 import java.util.ArrayDeque;
 
 public class TreeUtil {
+    //        Integer[] ints = {1,2,2,3,3,null,null,4,4};
+//        Integer[] ints = {3,9,20,null,null,15,7};
+//        Integer[] ints = {1,null,2,null,3};
+    Integer[] ints = {2,1,4,null,null,3,5,null,null,null,6};
+    TreeNode treeNode = TreeUtil.createTree(ints);
     public static TreeNode createTree(Integer[] arr) {
         // 使用队列来存储每一层的非空节点，下一层的数目要比上一层高
         ArrayDeque<TreeNode> pre = new ArrayDeque<>();
@@ -43,10 +48,9 @@ public class TreeUtil {
         Integer[] arr={5,4};
         TreeNode tree = createTree(arr);
         prePrinTree(tree);
-
     }
 
-    private static void prePrinTree(TreeNode node) {
+    public static void prePrinTree(TreeNode node) {
         if (node == null) {
             return;
         }

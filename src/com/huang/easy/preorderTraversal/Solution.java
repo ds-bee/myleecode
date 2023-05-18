@@ -3,38 +3,50 @@ package com.huang.easy.preorderTraversal;
 import com.huang.easy.util.TreeNode;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.Stack;
 
-/**
- * 使用广度优先遍历二叉树能达到不使用迭代的效果
- * 但是能达到遍历某一个节点的效果
- */
+import static com.huang.easy.util.TreeUtil.createTree;
+import static com.huang.easy.util.TreeUtil.prePrinTree;
+
 public class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if(root == null){
-            return list;
+    public static void main(String[] args) {
+        Integer[] arr={1,null,2,3};
+        TreeNode tree = createTree(arr);
+        List<Integer> integers = preorderTraversal(tree);
+        for (int i = 0; i < integers.size(); i++) {
+            System.out.println(integers.get(i));
         }
-        list.add(root.val);
-//        while (root.left != null){
-////            list.add(root)
-//        }
-        Queue<TreeNode> queue = new LinkedList<>();
-        while (queue.isEmpty()){
-            TreeNode poll = queue.poll();
-            list.add(poll.val);
-            if (poll.right != null) {
-                queue.offer(poll.right);
-            }
-            if (poll.left != null) {
-                queue.offer(poll.left);
-            }
-        }
-        return list;
+
+//        prePrinTree(tree);
 
     }
-
-
+    public static List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> integers = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode pop = stack.pop();
+            integers.add(pop.val);
+            if(pop.right != null) stack.push(pop.right);
+            if(pop.left != null) stack.push(pop.left);
+        }
+//        forword(integers, root);
+        return integers;
+    }
+//    public static List<Integer> forword(List<Integer> list, TreeNode root){
+//        if(root == null){
+//            return list;
+//        }
+//        list.add(root.val);
+//        if(root.left != null){
+////            preorderTraversal(root.left);
+//            forword(list,root.left);
+//        }
+//        if(root.right != null){
+////            preorderTraversal(root.right);
+//            forword(list,root.right);
+//        }
+//        return list;
+//    }
 }

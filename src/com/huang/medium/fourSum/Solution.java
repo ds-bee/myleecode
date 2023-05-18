@@ -27,6 +27,9 @@ public class Solution {
         }
         List<List<Integer>> lists =  new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
+            if (i < nums.length -1 && nums[i] == nums[i + 1]) {
+                continue;
+            }
 
             four = nums.length - 1;
             while (four - i > 2) {
@@ -40,21 +43,21 @@ public class Solution {
                     return lists;
                 }
 
-                int num2 = nums[i];
-                if(num2 == nums[i+1]){
-                    while (num2 == nums[i]){
-                        i++;
-                    }
-                    i--;
-                }
-
-                int num3 = nums[four];
-                if(num3 == nums[four-1]) {
-                    while (num3 == nums[four]) {
-                        four--;
-                    }
-                    four++;
-                }
+//                int num2 = nums[i];
+//                if(num2 == nums[i+1]){
+//                    while (num2 == nums[i]){
+//                        i++;
+//                    }
+//                    i--;
+//                }
+//
+//                int num3 = nums[four];
+//                if(num3 == nums[four-1]) {
+//                    while (num3 == nums[four]) {
+//                        four--;
+//                    }
+//                    four++;
+//                }
                 int record = 0;
                 two = i + 1;
                 three = four - 1;
@@ -62,20 +65,20 @@ public class Solution {
                     List<Integer> integers = new ArrayList<>();
                     record = target - nums[i] - nums[four];
                     if (record - nums[two] == nums[three]) {
-                        int num = nums[two];
-                        if(num == nums[two+1]){
-                            while (num == nums[two]){
-                                two++;
-                            }
-                            two--;
-                        }
-                        int num4 = nums[three];
-                        if(num4 == nums[three-1]) {
-                            while (num4 == nums[three]) {
-                                three--;
-                            }
-                            three++;
-                        }
+//                        int num = nums[two];
+//                        if(num == nums[two+1]){
+//                            while (num == nums[two]){
+//                                two++;
+//                            }
+//                            two--;
+//                        }
+//                        int num4 = nums[three];
+//                        if(num4 == nums[three-1]) {
+//                            while (num4 == nums[three]) {
+//                                three--;
+//                            }
+//                            three++;
+//                        }
                         integers.add(nums[i]);
                         integers.add(nums[two]);
                         integers.add(nums[three]);

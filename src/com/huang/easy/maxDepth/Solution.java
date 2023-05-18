@@ -1,37 +1,45 @@
 package com.huang.easy.maxDepth;
 
 
+import com.huang.easy.util.TreeNode;
+
+import static com.huang.easy.util.TreeUtil.createTree;
+import static com.huang.easy.util.TreeUtil.prePrinTree;
 
 public class Solution {
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-    int length = 0;
+    public static void main(String[] args) {
+        Integer[] arr={5,4};
+        TreeNode tree = createTree(arr);
+        int i = maxDepth(tree);
+        System.out.println(i);
+//        prePrinTree(tree);
 
-    public int maxDepth(TreeNode root) {
+    }
+
+    public static int maxDepth(TreeNode root) {
         if(root == null){
-            return length;
-        }else {
-            length++;
+            return 0;
+        }
+        int recordlen = 0, truthlen = 0;
+        int i = recordDepth(recordlen, truthlen, root);
+        return i;
+
+//        return length;
+    }
+    public static int recordDepth(int recordlen, int truthlen, TreeNode root){
+        if(root == null){
+            return recordlen;
+        }
+        if(truthlen > recordlen){
+            recordlen = truthlen;
         }
         if(root.left != null){
-            maxDepth(root.left);
-        }else if(root.left == null && root.right != null ){
-            length--;
+            recordlen = recordDepth(recordlen, truthlen + 1, root.left);
         }
         if(root.right != null){
-            maxDepth(root.right);
+            recordlen = recordDepth(recordlen, truthlen + 1, root.right);
         }
-        return length;
+        return recordlen;
     }
 
 
