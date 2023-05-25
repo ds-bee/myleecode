@@ -12,8 +12,8 @@ public class Solution {
         int cur = 0;
         boolean flag = false;
         for (int i = 1; i < prices.length; i++) {
-            pre = prices[i] - prices[i - 1];
             if(prices[i] > prices[i - 1]){
+                pre = prices[i] - prices[i - 1];
                 flag = true;
             }else {
                 flag = false;
