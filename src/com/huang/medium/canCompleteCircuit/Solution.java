@@ -18,43 +18,24 @@ public class Solution {
     public static int canCompleteCircuit(int[] gas, int[] cost) {
 //        Arrays.sort(gas);
 //        Arrays.sort(cost);
-        boolean flag = false;
-        int record = 0;
-        int sum = 0;
-        int remain = 0;
-        ArrayList<Integer> listpre = new ArrayList<>();
-        ArrayList<Integer> listcur = new ArrayList<>();
-        for (int i = 0; i < gas.length; i++) {
-//            listpre.add(gas[i] - cost[i]);
-            if(remain < gas[i] - cost[i]){
-                remain = gas[i] - cost[i];
-                record = i;
-            };
-
-        }
-        for (int i = 0; i < gas.length; i++) {
-            remain = gas[i] - cost[i];
-            if(record > i){
-                listpre.add(remain);
-            }else {
-                sum = sum + remain;
-            }
-//            if(sum <= 0){
-//                return -1;
-//            }
-        }
-        for (int i = 0; i < listpre.size(); i++) {
-            sum = sum + listpre.get(i);
-            if(i == listpre.size()-1 && sum == 0 ){
-                return record;
-            }
-            if(sum <= 0 ){
-                return -1;
+        int n = gas.length;
+        // 相当于图像中的坐标点和最低点
+        int sum = 0, minSum = 0;
+        int start = 0;
+        for (int i = 0; i < n; i++) {
+            sum += gas[i] - cost[i];
+            if (sum < minSum) {
+                // 经过第 i 个站点后，使 sum 到达新低
+                // 所以站点 i + 1 就是最低点（起点）
+                start = i + 1;
+                minSum = sum;
             }
         }
-        if(sum <= 0 ){
+        if (sum < 0) {
+            // 总油量小于总的消耗，无解
             return -1;
         }
-        return record;
+        // 环形数组特性
+        return start == n ? 0 : start;
     }
 }
