@@ -6,8 +6,8 @@ import java.util.Comparator;
 
 public class Solution {
     public static void main(String[] args) {
-//        int[][] arr = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
-        int[][] arr = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
+        int[][] arr = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+//        int[][] arr = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
         int ints = findMinArrowShots(arr);
         System.out.println(ints);
     }
@@ -18,36 +18,24 @@ public class Solution {
         }
         ArrayList<Integer> list = new ArrayList<>();
         int sum = 1;
-        for (int i = 0; i < points.length; i++) {
+        list.add(points[0][0]);
+        list.add(points[0][1]);
+        for (int i = 1; i < points.length; i++) {
+            Collections.sort(list);
             int[] point = points[i];
-            for (int i1 = 0; i1 < point.length; i1++) {
-                if (i1 % 2 == 0) {
-                    int i2 = 0;
-                    while (i2 < list.size()) {
-                        if (i2 % 2 == 0) {
-                            if (point[i1] > list.get(i2)) {
-                                sum++;
-                                break;
-                            }
-                        }
-                        i2 = i2 + 2;
-                    }
-                    }
-                    if (i1 % 2 == 1) {
-                        int i2 = 0;
-                        while (i2 < list.size()) {
-                            if (i2 % 2 == 1) {
-                                if (point[i1] > list.get(i2)) {
-                                    sum++;
-                                    break;
-                                }
-                            }
-                            i2 = i2 + 2;
-                        }
-                    }
-//                        i2++;
-                list.add(point[i1]);
+            if(point[1] < list.get(0)){
+                list.add(point[1] );
+                list.add(point[1] );
+                sum++;
+            }else if(point[0] > list.get(list.size() - 1)){
+                list.add(point[0]);
+                sum++;
+            }else{
+//                sum++;
+                list.add(point[0]);
+                list.add(point[1]);
             }
+
         }
         return sum;
     }
