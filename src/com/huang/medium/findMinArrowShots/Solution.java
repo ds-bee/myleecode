@@ -21,6 +21,9 @@ public class Solution {
             return 0;
         }
 //        long[][] pointslong =  points; 记住对二维数组排序使用这个方法就行了
+        //对这个进行排序的时候需要使用integer类型进行排序
+//        Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0]));
+
         Arrays.sort(points, Comparator.comparingInt(a -> a[1]));
 //        ArrayList<Integer> list = new ArrayList<>();
         int sum = 1;
