@@ -29,20 +29,29 @@ public class Solution {
 //            }
 //        }
         // 身高从大到小排（身高相同k小的站前面）
+//        Comparator<int[]> comparator = Comparator.comparingInt(int[] a -> a[0]) ;
+//        Arrays.sort(people, comparator);
+//        Arrays.sort(people, (a, b) -> {
+//            // 比较数组的第一个元素
+//            int cmp = Integer.compare(a[0], b[0]);
+//            if (cmp != 0) {
+//                return cmp;
+//            }
+//            // 如果第一个元素相等，比较数组的第二个元素
+//            return Integer.compare(a[1], b[1]);
+//        });
         Arrays.sort(people, (a, b) -> {
             if (a[0] == b[0]) return a[1] - b[1];
             return b[0] - a[0];
         });
-
-        LinkedList<int[]> que = new LinkedList<>();
-
-        for (int[] p : people) {
-            //这里p是数组的第二个数
-            que.add(p[1],p);
+        LinkedList<int[]> list = new LinkedList<int[]>();
+        for (int i = 0; i < people.length ; i++) {
+            list.add(people[i][1], people[i]);
         }
-
-        return que.toArray(new int[people.length][]);
-
+        return list.toArray(new int[people.length][]);
+//        不能够这么弄，而需要创建新的数组
+//        int[][] objects = (int[][]) list.toArray();
+//        return objects;
 
     }
 }
