@@ -43,11 +43,6 @@ public class Solution {
             integerHashMap.put(distance,ints);
         }
         Collections.sort(lists);
-
-
-
-
-
         int length = intervals[0].length;
         return 1;
     }
