@@ -3,6 +3,9 @@ package com.huang.easy.addTwoNumbers;
 import com.huang.utils.ListNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 //class ListNode {
 //     int val;
@@ -14,8 +17,16 @@ import java.util.ArrayList;
 
 public class Solution {
     public static void main(String[] args) {
-        int[] x = { 7,2,4,3 };
+//        Map map = new HashMap();
+//        map.put(1,1);
+//        map.put('1','1');
+//        for(Map.Entry<>map:ha)
+        Integer a = new Integer(10);
+        Integer b = new Integer(10);
+        System.out.println("a == b is " + (a == b));
+        System.out.println("a == b is " + (a.equals(b)));
         int[] y = { 5,6,4 };
+        int[] x = { 7,2,4,3 };
         ListNode l1 = ListNode.createLinkedList(x);
         ListNode l2 = ListNode.createLinkedList(y);
         ListNode listNode = addTwoNumbers(l1, l2);
